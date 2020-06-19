@@ -45,7 +45,6 @@ class FormatSqlController extends AbstractActionController
         $formattedSql = null;
         try {
             $formattedSql = \SqlFormatter::format($this->getRequest()->getPost()->get('sql'));
-            $form->setData(['sql' => $formattedSql]);
         } catch (\Exception $ex) {
             $error = true;
         }

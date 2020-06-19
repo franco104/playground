@@ -51,8 +51,6 @@ class FormatXmlController extends AbstractActionController
             $formattedXml = $dom->saveXml();
             if (!$formattedXml) {
                 $error = true;
-            } else {
-                $form->setData(['xml' => $formattedXml]);
             }
         } catch (\Exception $ex) {
             $error = true;

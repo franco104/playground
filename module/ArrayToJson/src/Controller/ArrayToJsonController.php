@@ -51,7 +51,6 @@ class ArrayToJsonController extends AbstractActionController
                 $error = true;
             }
             $result = json_encode($result);
-            $form->setData(['array' => $result]);
         } catch (\ParseError $ex) {
             $error = true;
         }

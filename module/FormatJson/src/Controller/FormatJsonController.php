@@ -45,7 +45,6 @@ class FormatJsonController extends AbstractActionController
         $formattedJson = null;
         try {
             $formattedJson = $this->formatJson($this->getRequest()->getPost()->get('json'));
-            $form->setData(['json' => $formattedJson]);
         } catch (\Exception $ex) {
             $error = true;
         }

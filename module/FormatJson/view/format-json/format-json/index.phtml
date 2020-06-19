@@ -13,7 +13,10 @@ if (!empty($json)) {
     ?>
     <div class="jumbotron">
         <h4>Formatted JSON:</h4>
-        <textarea class="form-control" rows="8" disabled><?= $json; ?></textarea>
+        <textarea class="form-control" rows="8" readonly id="textToCopy"><?= $json; ?></textarea>
+        <div class="bd-clipboard">
+            <button class="btn-clipboard" data-original-title="Copy to clipboard" onclick="copyTextArea()">Copy</button>
+        </div>
     </div>
 <?php
 }

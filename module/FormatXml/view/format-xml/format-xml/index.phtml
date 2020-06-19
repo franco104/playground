@@ -13,7 +13,10 @@ if (!empty($xml)) {
     ?>
     <div class="jumbotron">
         <h4>Formatted XML:</h4>
-        <textarea class="form-control" rows="8" disabled><?= $xml; ?></textarea>
+        <textarea class="form-control" rows="8" readonly id="textToCopy"><?= $xml; ?></textarea>
+        <div class="bd-clipboard">
+            <button class="btn-clipboard" data-original-title="Copy to clipboard" onclick="copyTextArea()">Copy</button>
+        </div>
     </div>
 <?php
 }

@@ -26,7 +26,7 @@ class FormatXmlController extends AbstractActionController
     public function indexAction()
     {
         $form = new FormatXmlForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Format');
 
         $request = $this->getRequest();
         if (! $request->isPost()) {

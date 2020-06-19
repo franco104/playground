@@ -26,7 +26,7 @@ class ArrayToJsonController extends AbstractActionController
     public function indexAction()
     {
         $form = new ArrayToJsonForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Format');
 
         $request = $this->getRequest();
         if (! $request->isPost()) {

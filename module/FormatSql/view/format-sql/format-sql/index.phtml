@@ -13,7 +13,10 @@ if (!empty($sql)) {
     ?>
     <div class="jumbotron">
         <h4>Formatted SQL:</h4>
-        <?= $sql; ?>
+        <div id="textToCopy"><?= $sql; ?></div>
+        <div class="bd-clipboard">
+            <button class="btn-clipboard" data-original-title="Copy to clipboard" onclick="copyDivToClipboard()">Copy</button>
+        </div>
     </div>
 <?php
 }

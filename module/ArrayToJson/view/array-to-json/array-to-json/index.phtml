@@ -1,0 +1,56 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-4">PHP Array To Json</h1>
+    <hr class="my-4">
+</div>
+
+<?php
+if (!empty($array)) {
+    ?>
+    <div class="jumbotron">
+        <h4>JSON Result:</h4>
+        <?= $array; ?>
+    </div>
+<?php
+}
+if (!empty($error)) {
+    ?>
+    <div class="jumbotron">
+        <h4>Error:</h4>
+        <?= $error; ?>
+    </div>
+<?php } ?>
+
+<div>
+    <?php
+    // This provides a default CSS class and placeholder text for the artist element:
+    $array = $form->get('array');
+    $array->setAttribute('class', 'form-control');
+    $array->setAttribute('placeholder', 'Array');
+
+    // This provides CSS classes for the submit button:
+    $submit = $form->get('submit');
+    $submit->setAttribute('class', 'btn btn-primary');
+
+    $form->setAttribute('action', $this->url('arrayToJson', ['action' => 'index']));
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    ?>
+    <?php // Wrap the elements in divs marked as form groups, and render the
+    // label, element, and errors separately within ?>
+    <div class="form-group">
+        <?= $this->formLabel($array) ?>
+        <?= $this->formElement($array) ?>
+        <?= $this->formElementErrors()->render($array, ['class' => 'help-block']) ?>
+    </div>
+
+    <?php
+    echo $this->formSubmit($submit);
+    echo $this->form()->closeTag();
+    ?>
+</div>

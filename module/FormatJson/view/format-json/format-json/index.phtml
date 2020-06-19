@@ -1,0 +1,56 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron">
+    <h1 class="display-4">Format JSON</h1>
+    <hr class="my-4">
+</div>
+
+<?php
+if (!empty($json)) {
+    ?>
+    <div class="jumbotron">
+        <h4>Formatted JSON:</h4>
+        <pre><?= $json; ?></pre>
+    </div>
+<?php
+}
+if (!empty($error)) {
+    ?>
+    <div class="jumbotron">
+        <h4>Error:</h4>
+        <?=  $error; ?>
+    </div>
+<?php } ?>
+
+<div>
+    <?php
+    // This provides a default CSS class and placeholder text for the artist element:
+    $json = $form->get('json');
+    $json->setAttribute('class', 'form-control');
+    $json->setAttribute('placeholder', 'JSON');
+
+    // This provides CSS classes for the submit button:
+    $submit = $form->get('submit');
+    $submit->setAttribute('class', 'btn btn-primary');
+
+    $form->setAttribute('action', $this->url('formatJson', ['action' => 'index']));
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    ?>
+    <?php // Wrap the elements in divs marked as form groups, and render the
+    // label, element, and errors separately within ?>
+    <div class="form-group">
+        <?= $this->formLabel($json) ?>
+        <?= $this->formElement($json) ?>
+        <?= $this->formElementErrors()->render($json, ['class' => 'help-block']) ?>
+    </div>
+
+    <?php
+    echo $this->formSubmit($submit);
+    echo $this->form()->closeTag();
+    ?>
+</div>

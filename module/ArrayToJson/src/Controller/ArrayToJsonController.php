@@ -33,8 +33,8 @@ class ArrayToJsonController extends AbstractActionController
             return ['form' => $form];
         }
 
-        $album = new ArrayToJson();
-        $form->setInputFilter($album->getInputFilter());
+        $arrayToJson = new ArrayToJson();
+        $form->setInputFilter($arrayToJson->getInputFilter());
         $form->setData($request->getPost());
 
         if (!$form->isValid()) {
@@ -55,11 +55,6 @@ class ArrayToJsonController extends AbstractActionController
         } catch (\ParseError $ex) {
             $error = true;
         }
-
-        $request = $this->getRequest();
-        $album = new ArrayToJson();
-        $form->setInputFilter($album->getInputFilter());
-        $form->setData($request->getPost());
 
         if ($error) {
             return new ViewModel(['form' => $form, 'error' => 'Invalid PHP array given']);

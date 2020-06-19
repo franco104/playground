@@ -19,5 +19,6 @@ return [
     'Application',
     'ArrayToJson',
     'FormatSql',
-    'FormatJson'
+    'FormatJson',
+    'FormatXml'
 ];

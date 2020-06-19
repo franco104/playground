@@ -7,25 +7,25 @@
 
 declare(strict_types=1);
 
-namespace FormatSql\Controller;
+namespace FormatXml\Controller;
 
-use FormatSql\Form\FormatSqlForm;
-use FormatSql\Model\FormatSql;
+use FormatXml\Form\FormatXmlForm;
+use FormatXml\Model\FormatXml;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
 /**
- * Class FormatSqlController
- * @package FormatSql\Controller
+ * Class FormatXmlController
+ * @package FormatXml\Controller
  */
-class FormatSqlController extends AbstractActionController
+class FormatXmlController extends AbstractActionController
 {
     /**
-     * @return FormatSqlForm[]|ViewModel
+     * @return FormatXmlForm[]|ViewModel
      */
     public function indexAction()
     {
-        $form = new FormatSqlForm();
+        $form = new FormatXmlForm();
         $form->get('submit')->setValue('Add');
 
         $request = $this->getRequest();
@@ -33,8 +33,8 @@ class FormatSqlController extends AbstractActionController
             return ['form' => $form];
         }
 
-        $formatSql = new FormatSql();
-        $form->setInputFilter($formatSql->getInputFilter());
+        $formatXml = new FormatXml();
+        $form->setInputFilter($formatXml->getInputFilter());
         $form->setData($request->getPost());
 
         if (!$form->isValid()) {
@@ -42,10 +42,18 @@ class FormatSqlController extends AbstractActionController
         }
 
         $error = false;
-        $formattedSql = null;
+        $formattedXml = null;
         try {
-            $formattedSql = \SqlFormatter::format($this->getRequest()->getPost()->get('sql'));
-            $form->setData(['sql' => $formattedSql]);
+            $dom = new \DOMDocument();
+            $dom->preserveWhiteSpace = FALSE;
+            $dom->loadXML($this->getRequest()->getPost()->get('xml'));
+            $dom->formatOutput = TRUE;
+            $formattedXml = $dom->saveXml();
+            if (!$formattedXml) {
+                $error = true;
+            } else {
+                $form->setData(['xml' => $formattedXml]);
+            }
         } catch (\Exception $ex) {
             $error = true;
         }
@@ -53,6 +61,6 @@ class FormatSqlController extends AbstractActionController
         if ($error) {
             return new ViewModel(['form' => $form, 'error' => 'Invalid PHP array given']);
         }
-        return new ViewModel(['form' => $form, 'sql' => $formattedSql]);
+        return new ViewModel(['form' => $form, 'xml' => $formattedXml]);
     }
 }

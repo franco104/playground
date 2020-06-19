@@ -17,14 +17,16 @@
         "laminas/laminas-form": "^2.14",
         "laminas/laminas-i18n": "^2.10",
         "jdorn/sql-formatter": "^1.2",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-dom": "*"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
             "ArrayToJson\\": "module/ArrayToJson/src/",
             "FormatSql\\": "module/FormatSql/src/",
-            "FormatJson\\": "module/FormatJson/src/"
+            "FormatJson\\": "module/FormatJson/src/",
+            "FormatXml\\": "module/FormatXml/src/"
         }
     },
     "autoload-dev": {

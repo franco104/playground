@@ -4,16 +4,16 @@
  */
 ?>
 <div class="jumbotron">
-    <h1 class="display-4">Format JSON</h1>
+    <h1 class="display-4">Format XML</h1>
     <hr class="my-4">
 </div>
 
 <?php
-if (!empty($json)) {
+if (!empty($xml)) {
     ?>
     <div class="jumbotron">
-        <h4>Formatted JSON:</h4>
-        <textarea class="form-control" rows="8" disabled><?= $json; ?></textarea>
+        <h4>Formatted XML:</h4>
+        <textarea class="form-control" rows="8" disabled><?= $xml; ?></textarea>
     </div>
 <?php
 }
@@ -21,22 +21,22 @@ if (!empty($error)) {
     ?>
     <div class="jumbotron">
         <h4>Error:</h4>
-        <?=  $error; ?>
+        <?= $error; ?>
     </div>
 <?php } ?>
 
 <div>
     <?php
     // This provides a default CSS class and placeholder text for the artist element:
-    $json = $form->get('json');
-    $json->setAttribute('class', 'form-control');
-    $json->setAttribute('placeholder', 'JSON');
+    $xml = $form->get('xml');
+    $xml->setAttribute('class', 'form-control');
+    $xml->setAttribute('placeholder', 'XML');
 
     // This provides CSS classes for the submit button:
     $submit = $form->get('submit');
     $submit->setAttribute('class', 'btn btn-primary');
 
-    $form->setAttribute('action', $this->url('formatJson', ['action' => 'index']));
+    $form->setAttribute('action', $this->url('formatXml', ['action' => 'index']));
     $form->prepare();
 
     echo $this->form()->openTag($form);
@@ -44,9 +44,9 @@ if (!empty($error)) {
     <?php // Wrap the elements in divs marked as form groups, and render the
     // label, element, and errors separately within ?>
     <div class="form-group">
-        <?= $this->formLabel($json) ?>
-        <?= $this->formElement($json) ?>
-        <?= $this->formElementErrors()->render($json, ['class' => 'help-block']) ?>
+        <?= $this->formLabel($xml) ?>
+        <?= $this->formElement($xml) ?>
+        <?= $this->formElementErrors()->render($xml, ['class' => 'help-block']) ?>
     </div>
 
     <?php
